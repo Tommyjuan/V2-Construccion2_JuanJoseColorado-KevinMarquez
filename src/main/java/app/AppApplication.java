@@ -1,7 +1,5 @@
 package app;
-
-import app.controllers.ControllerInterface;
-import app.controllers.LoginController;
+import app.controller.LoginController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

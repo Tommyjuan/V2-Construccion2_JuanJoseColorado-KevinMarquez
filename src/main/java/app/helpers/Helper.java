@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.helpers;
-
 import app.dto.GuestDto;
 import app.dto.InvoiceDetailDto;
 import app.dto.InvoiceDto;
@@ -17,10 +12,6 @@ import app.model.Invoice;
 import app.model.InvoiceDetail;
 import app.model.Partner;
 
-/**
- *
- * @author Camilo
- */
 public abstract class Helper {
 
     public static PersonDto parse(Person person) {
