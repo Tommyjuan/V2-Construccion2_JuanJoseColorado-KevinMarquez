@@ -4,10 +4,10 @@
  */
 package app.controllers;
 
-import app.Daoo.GuestDaoImplemetation;
-import app.Daoo.PartnerDaoImplemetation;
-import app.Daoo.PersonDaoImplementation;
-import app.Daoo.UserDaoImplementation;
+import app.dao_.GuestDaoImplemetation;
+import app.dao_.PartnerDaoImplemetation;
+import app.dao_.PersonDaoImplementation;
+import app.dao_.UserDaoImplementation;
 import app.controller.validator.GuestValidator;
 import app.controller.validator.InvoiceValidator;
 import app.controller.validator.PartnerValidator;

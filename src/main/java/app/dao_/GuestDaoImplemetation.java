@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package app.Daoo;
+package app.dao_;
 
 import app.config.MYSQLConnection;
 import app.dao.interfaces.GuestDao;
