@@ -76,7 +76,7 @@ public class AdminController implements ControllerInterface {
             }
         }
     }
-
+//bendito dio
     public void createPartner() throws Exception {
         System.out.println("Ingrese el nombre del socio");
         String name = Utils.getReader().nextLine();
