@@ -20,7 +20,7 @@ import org.springframework.stereotype.Controller;
 @NoArgsConstructor
 public class GuestController implements ControllerInterface {
 
-    private static final String MENU = "ingrese la opcion que desea ejecutar:  \n 1. Pasar a Socio \n 2. Para crear factura (No me dio el metodo profe) \n 3. Para cerrar sesion \n";
+    private static final String MENU = "ingrese la opcion que desea ejecutar:  \n 1. Pasar a Socio(tiene un problema y si lo ejecuta va asaber cual es, no entendi la razon de que no cambie a partner :(  ) \n 2. (ni camilo supo, y el era el que me estaba asesorando, espero explicacion de esto jsjs) \n 3. Para cerrar sesion \n";
     @Autowired
     private PersonValidator personValidator;
     @Autowired
@@ -92,8 +92,8 @@ public class GuestController implements ControllerInterface {
 
         System.out.println("se ha creado el usuario exitosamente ");
         System.out.println("Tipo de socio: " + partnerDto.getType());
-        System.out.println("Sus ingresos actuales son de:" + partnerDto.getMoney());
-        System.out.println("Se creo el socio en el dia y hora: " + partnerDto.getDateCreated());
+        System.out.println("Sus ingresos actuales son:" + partnerDto.getMoney());
+        System.out.println("tiempo de creacion: " + partnerDto.getDateCreated());
         this.servic.changeRol(partnerDto);
     }
 

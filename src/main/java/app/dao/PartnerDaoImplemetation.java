@@ -1,19 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.dao;
-
 import app.config.MYSQLConnection;
 import app.dao_interface.PartnerDao;
 import app.dao_repositores.PartnerRepository;
 import app.dto.PartnerDto;
-import app.dto.PersonDto;
-
 import app.dto.UserDto;
 import app.helpers.Helper;
 import app.model.Partner;
-import app.model.User;
 import jakarta.transaction.Transactional;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,10 +15,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Camilo
- */
+
 @Service
 @NoArgsConstructor
 @Getter
@@ -75,7 +64,7 @@ public class PartnerDaoImplemetation implements PartnerDao {
     }
 
     @Override
-    public int countVipPartners() throws Exception {
+    public int vipcounter() throws Exception {
         String query = "SELECT COUNT(*) FROM PARTNER WHERE TYPE = 'vip'";
         try (PreparedStatement preparedStatement = MYSQLConnection.getConnection().prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
             if (resultSet.next()) {

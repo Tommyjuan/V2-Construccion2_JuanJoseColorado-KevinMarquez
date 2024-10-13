@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.dao;
-
 import app.config.MYSQLConnection;
 import app.dao_interface.InvoiceDao;
 import app.dao_repositores.InvoiceRepository;
@@ -24,10 +19,6 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Camilo
- */
 @Service
 @NoArgsConstructor
 @Getter

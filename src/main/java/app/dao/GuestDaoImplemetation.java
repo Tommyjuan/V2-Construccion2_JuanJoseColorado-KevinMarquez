@@ -1,12 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.dao;
-
 import app.config.MYSQLConnection;
 import app.dao_interface.GuestDao;
-import app.dao_interface.PartnerDao;
 import app.dao_repositores.GuestRepository;
 import app.dto.GuestDto;
 import app.dto.PartnerDto;
@@ -15,11 +9,9 @@ import app.helpers.Helper;
 import app.model.Guest;
 import app.model.Partner;
 import app.model.User;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,10 +21,6 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Camilo
- */
 @Service
 @NoArgsConstructor
 @Getter
@@ -120,7 +108,7 @@ public class GuestDaoImplemetation implements GuestDao {
     }
 
     @Override
-    public int countGuestsByPartnerId(long partnerId) throws Exception {
+    public int countGuests(long partnerId) throws Exception {
          String query = "SELECT COUNT(*) AS count FROM GUEST WHERE PARTNERID = ? AND STATUS = 'activo'";
     PreparedStatement preparedStatement = MYSQLConnection.getConnection().prepareStatement(query);
     preparedStatement.setLong(1, partnerId);

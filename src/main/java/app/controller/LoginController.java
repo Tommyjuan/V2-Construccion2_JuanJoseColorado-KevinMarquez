@@ -18,7 +18,7 @@ public class LoginController implements ControllerInterface {
     private UserValidator userValidator;
     @Autowired
     private LoginService service;
-    private static final String MENU = "ingrese la opcion que desea: \n 1. para iniciar sesion. \n 2. para detener la ejecucion.";
+    private static final String MENU = "INGRESA: \n 1. iniciar sesion \n 2. terminar proceso \n";
     private Map<String, ControllerInterface> role;
     public LoginController(AdminController adminController, PartnerController partnerController, GuestController guestController) {
         this.role = new HashMap<String, ControllerInterface>();

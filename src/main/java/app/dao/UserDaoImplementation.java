@@ -1,30 +1,17 @@
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.dao;
-
-import app.config.MYSQLConnection;
 import app.dao_interface.UserDao;
 import app.dao_repositores.UserRepository;
 import app.dto.UserDto;
 import app.helpers.Helper;
-import app.model.Person;
 import app.model.User;
 import jakarta.transaction.Transactional;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Camilo
- */
 @Service
 @NoArgsConstructor
 @Getter
@@ -52,17 +39,16 @@ public class UserDaoImplementation implements UserDao {
     }
 
     @Override
+    @Transactional  
+    public void updateUserRole(UserDto userDto) throws Exception {
+        userRepository.updateUserRole(userDto.getRole(), userDto.getUserName());
+    }
+    
+    @Override
     public void deleteUser(UserDto userDto) throws Exception {
         User user = Helper.parse(userDto);
         userRepository.delete(user);
 
     }
      
-    @Override
-    @Transactional  
-    public void updateUserRole(UserDto userDto) throws Exception {
-        userRepository.updateUserRole(userDto.getRole(), userDto.getUserName());
-    }
 }
-
-

@@ -1,4 +1,5 @@
 package app.controller;
+
 import app.controller_validator.GuestValidator;
 import app.controller_validator.InvoiceValidator;
 import app.controller_validator.PartnerValidator;
@@ -29,7 +30,7 @@ public class PartnerController implements ControllerInterface {
 
     @Autowired
     private PartnerValidator partnerValidator;
-    private static final String MENU = "ingrese la opcion que desea ejecutar: \n 1. para crear invitado. \n 2. para agragar fondos. \n 3. para mostrar invitados. \n 4. para activar/descativar invitado. \n 5. para solicitar promocion. \n 6. para solicitar baja.  \n 7. para crear factura \n 8. para ver facturas \n 9. para pagar factura  \n 10.para cerrar sesion \n";
+    private static final String MENU = "INGRESE DIGITO: \n 1.crear invitado \n 2.mostrar invitados \n 3.activar/desactivar invitado \n 4. promocion VIP \n 5.agregar fondos.  \n 6.crear factura \n 7.ver facturas \n 8.pagar factura   \n 9.abandonar club(baja)  \n 10.para cerrar sesion \n";
     @Autowired
     private PersonValidator personValidator;
     @Autowired
@@ -80,39 +81,42 @@ public class PartnerController implements ControllerInterface {
                 return true;
             }
             case "2": {
-                this.addFouns();
+                this.guestStatus();
                 return true;
+
             }
             case "3": {
-                this.statusGuest();
+                this.guestchangeStatus();
                 return true;
+
             }
             case "4": {
-                this.changeStatus();
+                this.promotionVip();
                 return true;
+
             }
             case "5": {
-                this.vipPromocion();
+                this.addFunds();
                 return true;
             }
             case "6": {
+                this.createInvoice();
+                return true;
 
-                this.deletePartner();
-                return false;
             }
             case "7": {
-                this.createVoice();
-                return true;
-            }
-            case "8": {
                 this.statusInvoice();
                 return true;
             }
-            case "9": {
-                this.payVoice();
+            case "8": {
+                this.payInvoice();
                 return true;
             }
-
+            case "9": {
+                this.deletePartner();
+                return false;
+            }
+            
             case "10": {
                 System.out.println("se ha cerrado sesion");
                 return false;
@@ -165,59 +169,59 @@ public class PartnerController implements ControllerInterface {
         }
     }
 
-    public void deletePartner() throws Exception {
-        this.service.deletePartner();
 
-    }
-
-    public void statusGuest() throws Exception {
-        PartnerDto partnerDto = partnerDao.existByPartner(ServiceClub.user);
-        if (partnerDto == null) {
-            System.out.println("No se encontró un socio asociado al usuario.");
-            return;
-        }
-        service.showGuestsForPartner(partnerDto);
-
-    }
-
-    public void changeStatus() throws Exception {
+    public void guestchangeStatus() throws Exception {
 
         PartnerDto partnerDto = partnerDao.existByPartner(ServiceClub.user);
-        System.out.println("Ingrese el ID del invitado cuyo estado desea cambiar:");
+        System.out.println("Ingrese el ID del invitado:");
         long guestId = Long.parseLong(Utils.getReader().nextLine());
         GuestDto guestDto = service.getGuestById(guestId);
-
-        System.out.println("Ingrese el nuevo estado (activo/inactivo):");
+        
+        System.out.println("Ingrese estado (activo/inactivo):");
         String Status = Utils.getReader().nextLine();
         guestDto.setStatus(Status);
-
-        service.updateGuestStatus(guestDto);
-        System.out.println("Estado del invitado actualizado exitosamente.");
-        service.checkGuestLimit(partnerDto);
+        
+        service.updateStatus(guestDto);
+        System.out.println("Estado actualizado exitosamente");
+        service.guestLimit(partnerDto);
     }
 
-    public void addFouns() throws Exception {
+    
+    
+    
+    public void guestStatus() throws Exception {
+        PartnerDto partnerDto = partnerDao.existByPartner(ServiceClub.user);
+        if (partnerDto == null) {
+            System.out.println("No se encontró un socio que tenga relacion con el usuario.");
+            return;
+        }
+        service.watchGuests(partnerDto);
+
+    }
+
+    public void promotionVip() throws Exception {
+        this.service.promotionVip();
+    }
+
+    public void addFunds() throws Exception {
         this.service.updateMoney();
     }
 
-    public void vipPromocion() throws Exception {
-        this.service.vipPromocion();
-    }
-
-    public void createVoice() throws Exception {
+    public void createInvoice() throws Exception {
         this.service.createInvoice();
     }
 
     public void statusInvoice() throws Exception {
-        this.service.showInvoiceForPartner();
-        
+        this.service.showInvoice();
     }
-    public void payVoice() throws Exception {
-      
+
+    public void payInvoice() throws Exception {
         this.service.payInvoice();
-        
-    }
-    }
 
- 
+    }
+    
+    public void deletePartner() throws Exception {
+        this.service.deletePartner();
 
+    }
+}

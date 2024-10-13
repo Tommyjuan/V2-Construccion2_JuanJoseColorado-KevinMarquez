@@ -11,19 +11,19 @@ public interface PartnerService {
 
     public void changeRol(PartnerDto partnerDto) throws Exception;
 
-    public void showGuestsForPartner(PartnerDto partnerDto) throws Exception;
+    public void watchGuests(PartnerDto partnerDto) throws Exception;
 
     GuestDto getGuestById(long guestId) throws Exception;
 
-    public void updateGuestStatus(GuestDto guestDto) throws Exception;
+    public void updateStatus(GuestDto guestDto) throws Exception;
 
-    public void checkVipLimit(PartnerDto partnerDto) throws Exception;
+    public void vipLimit(PartnerDto partnerDto) throws Exception;
 
-    public void checkGuestLimit(PartnerDto partnerDto) throws Exception;
+    public void guestLimit(PartnerDto partnerDto) throws Exception;
 
-    public void vipPromocion () throws Exception;
+    public void promotionVip () throws Exception;
     
-    public int countActiveGuestsByPartner(long partnerId) throws Exception;
+    public int countActiveGuest(long partnerId) throws Exception;
     
     public void updateMoney() throws Exception;
      
@@ -31,9 +31,9 @@ public interface PartnerService {
     
     public void payInvoice() throws Exception;
     
-    public void showInvoiceForPartner() throws  Exception;
+    public void showInvoice() throws  Exception;
     
-    public void showInvoiceForAdmin() throws Exception;
+    public void ad_showInvoice() throws Exception;
     
     public void guestInvoice()throws Exception;
 }

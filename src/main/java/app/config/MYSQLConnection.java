@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MYSQLConnection {
+    //NO SE SI BORRARLO; ME DIO ERROR CUANDO QUERIA HACERLO
 
     private static final String URL = "jdbc:mysql://localhost:3307/club";
     private static final String USER = "root";

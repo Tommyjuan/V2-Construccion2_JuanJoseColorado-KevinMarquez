@@ -21,7 +21,7 @@ import org.springframework.stereotype.Controller;
 @NoArgsConstructor
 public class AdminController implements ControllerInterface {
 
-    private static final String MENU = "ingrese la opcion que desea ejecutar: \n 1. Para crear socio \n 2. Para ver lista de facturas \n 3. Para cerrar sesion\n";
+    private static final String MENU = "INGRESA DIGITO: \n 1. crear socio \n 2.ver lista de facturas \n 3.Cerrar sesion\n";
     @Autowired
     private PersonValidator personValidator;
     @Autowired
@@ -62,7 +62,7 @@ public class AdminController implements ControllerInterface {
                 return true;
             }
             case "2": {
-                this.showInvoiceForAdmin();
+                this.ad_showInvoice();
                 return true;
             }
             case "3": {
@@ -99,12 +99,14 @@ public class AdminController implements ControllerInterface {
         userDto.setUserName(userName);
         userDto.setPassword(password);
         userDto.setRole("partner");
+        
         PartnerDto partnerDto = new PartnerDto();
         partnerDto.setUserId(userDto);
         partnerDto.setMoney(50000);
         partnerDto.setDateCreated(new Timestamp(System.currentTimeMillis()));
         partnerDto.setType("regular");
         this.service.createPartner(partnerDto);
+        
         System.out.println("se ha creado el usuario exitosamente ");
         System.out.println("Tipo de socio: " + partnerDto.getType());
         System.out.println("Sus ingresos actuales son de:" + partnerDto.getMoney());
@@ -115,7 +117,7 @@ public class AdminController implements ControllerInterface {
         while (true) {
             System.out.println("Ingrese el número de celular (mínimo 10 dígitos):");
             String cellPhoneInput = Utils.getReader().nextLine();
-            if (cellPhoneInput.matches("\\d{10,}")) { // Verifica que el input tenga al menos 10 dígitos
+            if (cellPhoneInput.matches("\\d{10,}")) { // Verifica que el input tenga al menos 10 dígitos,gracias chat gpt por ayudar con este conteo,bendito dio
                 return Long.parseLong(cellPhoneInput);
             } else {
                 System.out.println("El número de celular debe tener al menos 10 dígitos. Inténtelo nuevamente.");
@@ -123,8 +125,8 @@ public class AdminController implements ControllerInterface {
         }
     }
 
-    private void showInvoiceForAdmin() throws Exception {
-        this.services.showInvoiceForAdmin();
+    private void ad_showInvoice() throws Exception {
+        this.services.ad_showInvoice();
     }
 
 }
