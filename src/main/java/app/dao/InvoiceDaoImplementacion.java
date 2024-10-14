@@ -1,4 +1,5 @@
 package app.dao;
+
 import app.config.MYSQLConnection;
 import app.dao_interface.InvoiceDao;
 import app.dao_repositores.InvoiceRepository;
@@ -23,32 +24,33 @@ import org.springframework.stereotype.Service;
 @NoArgsConstructor
 @Getter
 @Setter
-public class InvoiceDaoImplementacion implements InvoiceDao{
+public class InvoiceDaoImplementacion implements InvoiceDao {
+
     @Autowired
     InvoiceRepository invoiceRepository;
 
     @Override
     public void createInvoice(Invoice invoice) {
         invoiceRepository.save(invoice);
-                
+
     }
+
     @Override
-   public InvoiceDto existsByIDInvoice(long invoiceId) throws Exception {
-    Optional<Invoice> optionalInvoice = invoiceRepository.findById(invoiceId);
+    public InvoiceDto existsByIDInvoice(long invoiceId) throws Exception {
+        Optional<Invoice> optionalInvoice = invoiceRepository.findById(invoiceId);
         return Helper.parse(optionalInvoice.get());
-    
-           
-}
+
+    }
 
     @Override
     public List<InvoiceDto> statusInvoice(InvoiceDto invoiceDto) throws Exception {
-         List<InvoiceDto> invoices = new ArrayList<>();
+        List<InvoiceDto> invoices = new ArrayList<>();
         String query = "SELECT ID,PERSONID,PARTNERID,CREATIONDATE, AMOUNT,STATUS FROM INVOICE WHERE PARTNERID = ?";
         PreparedStatement preparedStatement = MYSQLConnection.getConnection().prepareStatement(query);
         preparedStatement.setLong(1, invoiceDto.getId());
         ResultSet resulSet = preparedStatement.executeQuery();
         while (resulSet.next()) {
-            Invoice invoice= new Invoice();
+            Invoice invoice = new Invoice();
             invoice.setId(resulSet.getLong("ID"));
             invoice.setStatus(resulSet.getString("STATUS"));
             invoice.setDateCreate(resulSet.getTimestamp("CREATIONDATE"));
@@ -65,6 +67,7 @@ public class InvoiceDaoImplementacion implements InvoiceDao{
         preparedStatement.close();
         return invoices;
     }
+
     public List<InvoiceDto> findAllInvoices() throws Exception {
         List<InvoiceDto> invoices = new ArrayList<>();
         String query = "SELECT ID, PERSONID, PARTNERID, CREATIONDATE, AMOUNT, STATUS FROM INVOICE";
@@ -88,12 +91,9 @@ public class InvoiceDaoImplementacion implements InvoiceDao{
         return invoices;
     }
 
-    
     @Override
     @Transactional
     public void changeStatus(InvoiceDto invoiceDto) throws Exception {
-         invoiceRepository.changeStatus(invoiceDto.getStatus(), invoiceDto.getId());
+        invoiceRepository.changeStatus(invoiceDto.getStatus(), invoiceDto.getId());
     }
-    }
-
-
+}

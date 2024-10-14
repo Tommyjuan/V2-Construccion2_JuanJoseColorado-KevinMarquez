@@ -16,31 +16,3 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
     @Query("UPDATE Invoice i SET i.status = :status WHERE i.id = :id")
     void changeStatus(@Param("status") String status, @Param("id") Long id);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

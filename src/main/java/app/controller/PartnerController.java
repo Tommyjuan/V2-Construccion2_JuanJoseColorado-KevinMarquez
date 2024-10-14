@@ -116,7 +116,7 @@ public class PartnerController implements ControllerInterface {
                 this.deletePartner();
                 return false;
             }
-            
+
             case "10": {
                 System.out.println("se ha cerrado sesion");
                 return false;
@@ -169,26 +169,22 @@ public class PartnerController implements ControllerInterface {
         }
     }
 
-
     public void guestchangeStatus() throws Exception {
 
         PartnerDto partnerDto = partnerDao.existByPartner(ServiceClub.user);
         System.out.println("Ingrese el ID del invitado:");
         long guestId = Long.parseLong(Utils.getReader().nextLine());
         GuestDto guestDto = service.getGuestById(guestId);
-        
+
         System.out.println("Ingrese estado (activo/inactivo):");
         String Status = Utils.getReader().nextLine();
         guestDto.setStatus(Status);
-        
+
         service.updateStatus(guestDto);
         System.out.println("Estado actualizado exitosamente");
         service.guestLimit(partnerDto);
     }
 
-    
-    
-    
     public void guestStatus() throws Exception {
         PartnerDto partnerDto = partnerDao.existByPartner(ServiceClub.user);
         if (partnerDto == null) {
@@ -219,7 +215,7 @@ public class PartnerController implements ControllerInterface {
         this.service.payInvoice();
 
     }
-    
+
     public void deletePartner() throws Exception {
         this.service.deletePartner();
 

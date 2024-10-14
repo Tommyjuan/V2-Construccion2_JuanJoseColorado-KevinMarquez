@@ -1,4 +1,5 @@
 package app.controller;
+
 import app.controller_validator.PartnerValidator;
 import app.controller_validator.PersonValidator;
 import app.controller_validator.UserValidator;
@@ -69,7 +70,7 @@ public class AdminController implements ControllerInterface {
                 System.out.println("se ha cerrado sesion");
                 return false;
             }
-         
+
             default: {
                 System.out.println("ingrese una opcion valida");
                 return true;
@@ -77,6 +78,7 @@ public class AdminController implements ControllerInterface {
         }
     }
 //bendito dio
+
     public void createPartner() throws Exception {
         System.out.println("Ingrese el nombre del socio");
         String name = Utils.getReader().nextLine();
@@ -99,14 +101,14 @@ public class AdminController implements ControllerInterface {
         userDto.setUserName(userName);
         userDto.setPassword(password);
         userDto.setRole("partner");
-        
+
         PartnerDto partnerDto = new PartnerDto();
         partnerDto.setUserId(userDto);
         partnerDto.setMoney(50000);
         partnerDto.setDateCreated(new Timestamp(System.currentTimeMillis()));
         partnerDto.setType("regular");
         this.service.createPartner(partnerDto);
-        
+
         System.out.println("se ha creado el usuario exitosamente ");
         System.out.println("Tipo de socio: " + partnerDto.getType());
         System.out.println("Sus ingresos actuales son de:" + partnerDto.getMoney());

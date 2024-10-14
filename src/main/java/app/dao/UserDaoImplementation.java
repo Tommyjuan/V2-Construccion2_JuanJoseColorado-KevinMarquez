@@ -1,5 +1,5 @@
-
 package app.dao;
+
 import app.dao_interface.UserDao;
 import app.dao_repositores.UserRepository;
 import app.dto.UserDto;
@@ -17,7 +17,8 @@ import org.springframework.stereotype.Service;
 @Getter
 @Setter
 public class UserDaoImplementation implements UserDao {
-  @Autowired
+
+    @Autowired
     UserRepository userRepository;
 
     @Override
@@ -35,20 +36,20 @@ public class UserDaoImplementation implements UserDao {
     @Override
     public void createUser(UserDto userDto) throws Exception {
         User user = Helper.parse(userDto);
-       userRepository.save(user);
+        userRepository.save(user);
     }
 
     @Override
-    @Transactional  
+    @Transactional
     public void updateUserRole(UserDto userDto) throws Exception {
         userRepository.updateUserRole(userDto.getRole(), userDto.getUserName());
     }
-    
+
     @Override
     public void deleteUser(UserDto userDto) throws Exception {
         User user = Helper.parse(userDto);
         userRepository.delete(user);
 
     }
-     
+
 }

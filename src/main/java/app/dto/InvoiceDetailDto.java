@@ -27,8 +27,6 @@ public class InvoiceDetailDto {
         this.invoiceId = invoiceId;
     }
 
-   
-
     public int getItem() {
         return item;
     }

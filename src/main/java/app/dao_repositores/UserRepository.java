@@ -1,4 +1,5 @@
 package app.dao_repositores;
+
 import app.model.User;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;

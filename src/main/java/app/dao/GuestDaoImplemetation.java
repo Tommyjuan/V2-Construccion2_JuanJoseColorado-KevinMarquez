@@ -1,4 +1,5 @@
 package app.dao;
+
 import app.config.MYSQLConnection;
 import app.dao_interface.GuestDao;
 import app.dao_repositores.GuestRepository;
@@ -26,13 +27,14 @@ import org.springframework.stereotype.Service;
 @Getter
 @Setter
 public class GuestDaoImplemetation implements GuestDao {
+
     @Autowired
     GuestRepository guestRepository;
-    
+
     @Override
     public void createGuest(GuestDto guestDto) throws SQLException {
         Guest guest = Helper.parse(guestDto);
-       guestRepository.save(guest);
+        guestRepository.save(guest);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class GuestDaoImplemetation implements GuestDao {
     @Override
     public GuestDto existByGuest(UserDto userDto) throws Exception {
         Optional<Guest> optionalGuest = guestRepository.findById(userDto.getId());
-                return Helper.parse(optionalGuest.get());
+        return Helper.parse(optionalGuest.get());
     }
 
     @Override
@@ -74,13 +76,13 @@ public class GuestDaoImplemetation implements GuestDao {
 
     @Override
     public void changeStatus(GuestDto guestDto) throws Exception {
-        guestRepository.updateGuestStatus(guestDto.getStatus(),guestDto.getId());
+        guestRepository.updateGuestStatus(guestDto.getStatus(), guestDto.getId());
     }
 
     @Override
     public GuestDto getGuestById(long guestId) throws Exception {
-           Optional<Guest> optionalGuest = guestRepository.findById(guestId);
-               return Helper.parse(optionalGuest.get());
+        Optional<Guest> optionalGuest = guestRepository.findById(guestId);
+        return Helper.parse(optionalGuest.get());
     }
 
     @Override
@@ -109,25 +111,17 @@ public class GuestDaoImplemetation implements GuestDao {
 
     @Override
     public int countGuests(long partnerId) throws Exception {
-         String query = "SELECT COUNT(*) AS count FROM GUEST WHERE PARTNERID = ? AND STATUS = 'activo'";
-    PreparedStatement preparedStatement = MYSQLConnection.getConnection().prepareStatement(query);
-    preparedStatement.setLong(1, partnerId);
-    ResultSet resultSet = preparedStatement.executeQuery();
-    int count = 0;
-    if (resultSet.next()) {
-        count = resultSet.getInt("count");
-    }
-    resultSet.close();
-    preparedStatement.close();
-    return count;
-    }
-
-   
-
+        String query = "SELECT COUNT(*) AS count FROM GUEST WHERE PARTNERID = ? AND STATUS = 'activo'";
+        PreparedStatement preparedStatement = MYSQLConnection.getConnection().prepareStatement(query);
+        preparedStatement.setLong(1, partnerId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        int count = 0;
+        if (resultSet.next()) {
+            count = resultSet.getInt("count");
+        }
+        resultSet.close();
+        preparedStatement.close();
+        return count;
     }
 
-        
-    
-  
-
-   
+}

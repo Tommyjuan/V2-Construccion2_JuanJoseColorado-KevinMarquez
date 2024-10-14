@@ -27,27 +27,3 @@ public interface PartnerRepository extends JpaRepository<Partner, Long> {
     void updatePartnerType(String type, Long id);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

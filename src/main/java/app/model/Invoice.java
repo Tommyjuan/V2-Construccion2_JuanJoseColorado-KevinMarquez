@@ -1,4 +1,5 @@
 package app.model;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "invoice")
 public class Invoice {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +33,13 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "partnerid")
     private Partner partnerId;
-    @Column (name = "creationdate")
+    @Column(name = "creationdate")
     private Timestamp dateCreate;
-    @Column (name = "amount")
+    @Column(name = "amount")
     private double amount;
-    @Column (name = "status")
+    @Column(name = "status")
     private String status;
     @OneToMany(mappedBy = "invoiceId", cascade = CascadeType.PERSIST)
     private List<InvoiceDetail> invoiceDetails;
-   
+
 }

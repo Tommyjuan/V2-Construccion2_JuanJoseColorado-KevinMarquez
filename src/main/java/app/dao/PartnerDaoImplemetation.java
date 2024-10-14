@@ -1,4 +1,5 @@
 package app.dao;
+
 import app.config.MYSQLConnection;
 import app.dao_interface.PartnerDao;
 import app.dao_repositores.PartnerRepository;
@@ -14,7 +15,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 @Service
 @NoArgsConstructor

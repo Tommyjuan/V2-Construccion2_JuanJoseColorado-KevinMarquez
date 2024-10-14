@@ -1,6 +1,6 @@
 package app.dto;
-import java.sql.Timestamp;
 
+import java.sql.Timestamp;
 
 public class InvoiceDto {
 
@@ -46,8 +46,6 @@ public class InvoiceDto {
         this.dateCreated = dateCreated;
     }
 
-   
-
     public double getAmount() {
         return amount;
     }
@@ -64,5 +62,4 @@ public class InvoiceDto {
         this.Status = Status;
     }
 
-  
 }

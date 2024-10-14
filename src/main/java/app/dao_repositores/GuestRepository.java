@@ -20,22 +20,3 @@ public interface GuestRepository extends JpaRepository<Guest, Long> {
 
     Optional<Guest> findById(Long guestId);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

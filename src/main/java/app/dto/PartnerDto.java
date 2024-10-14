@@ -1,4 +1,5 @@
 package app.dto;
+
 import java.sql.Timestamp;
 
 public class PartnerDto {

@@ -1,4 +1,5 @@
 package app.controller_validator;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class PersonValidator extends CommonsValidator {
 
-  
     public void validName(String name) throws Exception {
         super.isValidString("el nombre de la persona ", name);
     }

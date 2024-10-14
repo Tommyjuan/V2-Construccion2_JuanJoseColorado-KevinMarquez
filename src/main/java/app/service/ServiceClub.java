@@ -1,4 +1,5 @@
 package app.service;
+
 import app.controller_validator.InvoiceValidator;
 import app.controller.Utils;
 import app.dao_interface.GuestDao;
@@ -177,7 +178,7 @@ public class ServiceClub implements AdminService, LoginService, PartnerService {
         List<GuestDto> guests = guestDao.statusGuest(partnerDto);
 
         System.out.println("Id de invitados registrados para el socio actual - " + users.getUserName() + "- son :");
-        
+
         for (GuestDto guest : guests) {
             System.out.println("ID: " + guest.getId() + "\n UserID: " + guest.getUserId().getId() + "\n Status: " + guest.getStatus());
 
@@ -226,7 +227,7 @@ public class ServiceClub implements AdminService, LoginService, PartnerService {
         if ("vip".equals(partnerDto.getType())) {
             int vipcounter = this.partnerDao.vipcounter();
             final int vip = 5;
-            if (vipcounter>= vip) {
+            if (vipcounter >= vip) {
                 throw new Exception("Máximo de socios VIP alcanzado.");
             }
         }
@@ -236,7 +237,7 @@ public class ServiceClub implements AdminService, LoginService, PartnerService {
     public int countActiveGuest(long partnerId) throws Exception {
         return guestDao.countGuests(partnerId);
     }
-    
+
     @Override
     public void guestLimit(PartnerDto partnerDto) throws Exception {
         if ("regular".equals(partnerDto.getType())) {
@@ -257,11 +258,11 @@ public class ServiceClub implements AdminService, LoginService, PartnerService {
             int vipcounter = partnerDao.vipcounter();
             final int vip = 5;
             partnerDto.setType("vip");
-            
+
             if (vipcounter >= vip) {
                 throw new Exception("Máximo de socios VIP alcanzado.");
             }
-            
+
             partnerDto.setType("vip");
             this.partnerDao.updatePartnerType(partnerDto);
             System.out.println("Solicitud a VIP ha sido aceptada.");
@@ -271,7 +272,6 @@ public class ServiceClub implements AdminService, LoginService, PartnerService {
         }
 
     }
-
 
     @Override
     public void createInvoice() throws Exception {

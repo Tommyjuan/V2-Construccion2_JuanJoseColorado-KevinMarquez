@@ -1,4 +1,5 @@
 package app.controller;
+
 import app.controller_validator.PartnerValidator;
 import app.controller_validator.PersonValidator;
 import app.controller_validator.UserValidator;
@@ -19,8 +20,8 @@ import org.springframework.stereotype.Controller;
 @Setter
 @NoArgsConstructor
 public class GuestController implements ControllerInterface {
-
-    private static final String MENU = "ingrese la opcion que desea ejecutar:  \n 1. Pasar a Socio(tiene un problema y si lo ejecuta va asaber cual es, no entendi la razon de que no cambie a partner :(  ) \n 2. (ni camilo supo, y el era el que me estaba asesorando, espero explicacion de esto jsjs) \n 3. Para cerrar sesion \n";
+//revisar
+    private static final String MENU = "ingrese la opcion que desea ejecutar:  \n 1. Pasar a Socio(tiene un problema y si lo ejecuta va asaber cual es, no entendi la razon de que no cambie a partner :(  ) \n 2. hacer consumo (corchado quede, ni camilo supo, y el era el que me estaba ayudandome con la elaboracion de la logica jsjs, espero explicacion de esto jsjs) \n 3. Para cerrar sesion \n";
     @Autowired
     private PersonValidator personValidator;
     @Autowired
@@ -32,7 +33,6 @@ public class GuestController implements ControllerInterface {
     @Autowired
     private PartnerValidator partnerValidator;
 
-  
     @Override
     public void session() throws Exception {
         boolean session = true;
@@ -98,7 +98,7 @@ public class GuestController implements ControllerInterface {
     }
 
     public void guestInvoice() throws Exception {
-    this.servic.guestInvoice();
+        this.servic.guestInvoice();
     }
-    
+
 }

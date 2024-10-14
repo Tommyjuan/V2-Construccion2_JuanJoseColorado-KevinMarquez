@@ -1,4 +1,5 @@
 package app.dao;
+
 import app.dao_interface.InvoiceDetailDao;
 import app.dao_repositores.InvoiceDetailRepository;
 import app.model.InvoiceDetail;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Getter
 @Setter
 public class InvoiceDetailDaoImplementacion implements InvoiceDetailDao {
+
     @Autowired
     InvoiceDetailRepository invoiceDetailRepository;
 
@@ -20,6 +22,5 @@ public class InvoiceDetailDaoImplementacion implements InvoiceDetailDao {
     public void createInvoiceDetail(InvoiceDetail invoiceDetail) throws Exception {
         invoiceDetailRepository.save(invoiceDetail);
     }
-    
-}
 
+}

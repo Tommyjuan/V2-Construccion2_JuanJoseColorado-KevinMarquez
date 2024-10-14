@@ -21,19 +21,19 @@ public interface PartnerService {
 
     public void guestLimit(PartnerDto partnerDto) throws Exception;
 
-    public void promotionVip () throws Exception;
-    
+    public void promotionVip() throws Exception;
+
     public int countActiveGuest(long partnerId) throws Exception;
-    
+
     public void updateMoney() throws Exception;
-     
+
     public void createInvoice() throws Exception;
-    
+
     public void payInvoice() throws Exception;
-    
-    public void showInvoice() throws  Exception;
-    
+
+    public void showInvoice() throws Exception;
+
     public void ad_showInvoice() throws Exception;
-    
-    public void guestInvoice()throws Exception;
+
+    public void guestInvoice() throws Exception;
 }

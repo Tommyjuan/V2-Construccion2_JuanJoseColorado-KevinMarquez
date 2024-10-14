@@ -1,4 +1,5 @@
 package app.controller;
+
 import app.controller_validator.UserValidator;
 import app.dto.UserDto;
 import app.service_interface.LoginService;
@@ -13,13 +14,14 @@ import org.springframework.stereotype.Controller;
 @Getter
 @Setter
 public class LoginController implements ControllerInterface {
-    
+
     @Autowired
     private UserValidator userValidator;
     @Autowired
     private LoginService service;
     private static final String MENU = "INGRESA: \n 1. iniciar sesion \n 2. terminar proceso \n";
     private Map<String, ControllerInterface> role;
+
     public LoginController(AdminController adminController, PartnerController partnerController, GuestController guestController) {
         this.role = new HashMap<String, ControllerInterface>();
         role.put("admin", adminController);

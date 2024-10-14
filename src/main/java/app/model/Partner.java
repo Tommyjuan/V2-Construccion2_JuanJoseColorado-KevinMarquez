@@ -1,4 +1,5 @@
 package app.model;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "partner")
 public class Partner {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +33,5 @@ public class Partner {
     private String type;
     @Column(name = "creationdate")
     private Timestamp dateCreated;
-    
 
 }

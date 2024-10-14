@@ -1,4 +1,5 @@
 package app.controller;
+
 import java.util.Scanner;
 
 public abstract class Utils {
