@@ -1,41 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.controllers;
 
-import app.Daoo.GuestDaoImplemetation;
-import app.Daoo.PartnerDaoImplemetation;
-import app.Daoo.PersonDaoImplementation;
-import app.Daoo.UserDaoImplementation;
-import app.controller.validator.GuestValidator;
-import app.controller.validator.InvoiceValidator;
-import app.controller.validator.PartnerValidator;
-import app.controller.validator.PersonValidator;
-import app.controller.validator.UserValidator;
-import app.controllers.requests.AddFundsRequest;
-import app.controllers.requests.ChangeStatusRequest;
-import app.controllers.requests.CreateUserRequest;
-import app.controllers.requests.InvoiceRequest;
-import app.controllers.requests.ParnerInvoice;
-import app.controllers.requests.PayInvoice;
-import app.dao.interfaces.GuestDao;
-import app.dao.interfaces.InvoiceDao;
-import app.dao.interfaces.PartnerDao;
-import app.dao.interfaces.PersonDao;
-import app.dao.interfaces.UserDao;
+import app.controller_validator.GuestValidator;
+import app.controller_validator.InvoiceValidator;
+import app.controller_validator.PartnerValidator;
+import app.controller_validator.PersonValidator;
+import app.controller_validator.UserValidator;
+import app.controller_requests.AddFound_Request;
+import app.controller_requests.ChangeStatus_Request;
+import app.controller_requests.CreateUser_Request;
+import app.controller_requests.Invoice_Request;
+import app.controller_requests.ParnerInvoice_Request;
+import app.controller_requests.PayInvoice_Request;
+import app.dao_interfaces.GuestDao;
+import app.dao_interfaces.InvoiceDao;
+import app.dao_interfaces.PartnerDao;
+import app.dao_interfaces.PersonDao;
+import app.dao_interfaces.UserDao;
 import app.dto.GuestDto;
-import app.dto.InvoiceDetailDto;
 import app.dto.InvoiceDto;
 import app.dto.PartnerDto;
 import app.dto.PersonDto;
 import app.dto.UserDto;
-import app.model.Partner;
-import app.service.interfac.PartnerService;
-import app.service.x.ServiceClub;
-import static app.service.x.ServiceClub.user;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import app.service_interfaces.PartnerService;
 import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,17 +29,11 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author Camilo
- */
 @RestController
 @Getter
 @Setter
@@ -89,8 +69,8 @@ public class PartnerController implements ControllerInterface {
 
     }
 
-    @PostMapping("/guest")
-    public ResponseEntity<?> createGuest(@RequestBody CreateUserRequest request) {
+    @PostMapping("/createG")
+    public ResponseEntity<?> createGuest(@RequestBody CreateUser_Request request) {
         try {
 
             String name = request.getName();
@@ -129,7 +109,7 @@ public class PartnerController implements ControllerInterface {
         }
     }
 
-    @DeleteMapping("/partner1")
+    @DeleteMapping("/deleteP")//paila
     public ResponseEntity<String> deletePartner() {
         try {
             this.service.deletePartner();
@@ -140,8 +120,8 @@ public class PartnerController implements ControllerInterface {
         }
     }
 
-    @PostMapping("status-guest")
-    public ResponseEntity<?> statusGuest(@RequestBody CreateUserRequest request) throws Exception {
+    @PostMapping("/statusG")
+    public ResponseEntity<?> statusGuest(@RequestBody CreateUser_Request request) throws Exception {
         try {
 
             PartnerDto partnerDto = new PartnerDto();
@@ -164,8 +144,8 @@ public class PartnerController implements ControllerInterface {
 
     }
 
-    @PostMapping("/change-status")
-    public ResponseEntity<?> changeStatus(@RequestBody ChangeStatusRequest request) {
+    @PostMapping("/changeStatusG")
+    public ResponseEntity<?> changeStatus(@RequestBody ChangeStatus_Request request) {
         try {
             long guestId = request.getGuestId();
             String status = request.getStatus();
@@ -178,8 +158,8 @@ public class PartnerController implements ControllerInterface {
         }
     }
 
-    @PostMapping("/add-funds")
-    public ResponseEntity<?> addFunds(@RequestBody AddFundsRequest request) {
+    @PostMapping("/addFound")
+    public ResponseEntity<?> addFunds(@RequestBody AddFound_Request request) {
         try {
             service.updateMoney(request.getPartnerId(), request.getAmount());
 
@@ -188,13 +168,13 @@ public class PartnerController implements ControllerInterface {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+//no le se le hizo post, me rendi en este punto
     public void vipPromocion() throws Exception {
         this.service.vipPromocion();
     }
 
-    @PostMapping("/create-invoice")
-    public ResponseEntity<?> createVoice(@RequestBody InvoiceRequest request) {
+    @PostMapping("/createI")
+    public ResponseEntity<?> createVoice(@RequestBody Invoice_Request request) {
         try {
             service.createInvoice(request);
             return ResponseEntity.ok("Factura creada exitosamente.");
@@ -203,8 +183,8 @@ public class PartnerController implements ControllerInterface {
         }
     }
 
-    @PostMapping("/status-invoice")
-    public ResponseEntity<?> statusInvoice(@RequestBody ParnerInvoice request) throws Exception {
+    @PostMapping("/statusI")
+    public ResponseEntity<?> statusInvoice(@RequestBody ParnerInvoice_Request request) throws Exception {
         try {
             PartnerDto partnerDto = new PartnerDto();
             long partnerId = request.getPartnerId();
@@ -223,11 +203,12 @@ public class PartnerController implements ControllerInterface {
         }
 
     }
-    @PostMapping("/pay-voices")
-    public ResponseEntity<?> payVoice(@RequestBody PayInvoice request) throws Exception {
-     try {
-         service.payInvoice(request);
-         return ResponseEntity.ok("Factura creada exitosamente.");
+
+    @PostMapping("/payV")
+    public ResponseEntity<?> payVoice(@RequestBody PayInvoice_Request request) throws Exception {
+        try {
+            service.payInvoice(request);
+            return ResponseEntity.ok("Factura creada exitosamente.");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

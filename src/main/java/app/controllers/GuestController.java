@@ -1,22 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.controllers;
 
-import app.controller.validator.PartnerValidator;
-import app.controller.validator.PersonValidator;
-import app.controller.validator.UserValidator;
-import app.controllers.requests.ChangeRol;
-import app.controllers.requests.CreateUserRequest;
-import app.controllers.requests.InvoiceRequest;
-import app.dao.interfaces.UserDao;
+import app.controller_validator.PartnerValidator;
+import app.controller_validator.PersonValidator;
+import app.controller_validator.UserValidator;
+import app.controller_requests.ChangeRol_Request;
+import app.controller_requests.Invoice_Request;
+import app.dao_interfaces.UserDao;
 import app.dto.PartnerDto;
-import app.dto.PersonDto;
 import app.dto.UserDto;
-import app.service.interfac.AdminService;
-import app.service.interfac.PartnerService;
-import app.service.x.ServiceClub;
+import app.service_interfaces.AdminService;
+import app.service_interfaces.PartnerService;
 import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +17,6 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,14 +45,14 @@ public class GuestController implements ControllerInterface {
     public void session() throws Exception {
     }
 
-    @PostMapping("/changerol")
-    public ResponseEntity <?> createPartner(@RequestBody ChangeRol request) throws Exception {
+    @PostMapping("/changerolG")
+    public ResponseEntity<?> createPartner(@RequestBody ChangeRol_Request request) throws Exception {
         try {
 
             UserDto userDto = userDao.findById(request.getUserId());
-        if (userDto == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado.");
-        }
+            if (userDto == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado.");
+            }
             userDto.setRole("partner");
             PartnerDto partnerDto = new PartnerDto();
             partnerDto.setUserId(userDto);
@@ -78,16 +70,15 @@ public class GuestController implements ControllerInterface {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-    @PostMapping("/guest-invoice")
-    public ResponseEntity<?> guestInvoice(@RequestBody InvoiceRequest request) throws Exception {
+
+    @PostMapping("/guestI")
+    public ResponseEntity<?> guestInvoice(@RequestBody Invoice_Request request) throws Exception {
         try {
             servic.guestInvoice(request);
-             return ResponseEntity.ok("Factura creada exitosamente.");
+            return ResponseEntity.ok("Factura creada exitosamente.");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        }
-        
     }
 
-
+}

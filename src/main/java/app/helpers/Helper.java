@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.helpers;
 
 import app.dto.GuestDto;
@@ -17,10 +13,6 @@ import app.model.Invoice;
 import app.model.InvoiceDetail;
 import app.model.Partner;
 
-/**
- *
- * @author Camilo
- */
 public abstract class Helper {
 
     public static PersonDto parse(Person person) {
@@ -126,7 +118,8 @@ public abstract class Helper {
 
         return guestDto;
     }
-     public static InvoiceDto parse(Invoice invoice) {
+
+    public static InvoiceDto parse(Invoice invoice) {
         if (invoice == null) {
             return null;
         }
@@ -137,11 +130,11 @@ public abstract class Helper {
         invoiceDto.setDateCreated(invoice.getDateCreate());
         invoiceDto.setAmount(invoice.getAmount());
         invoiceDto.setStatus(invoice.getStatus());
-        
 
         return invoiceDto;
     }
-     public static Invoice parse(InvoiceDto invoiceDto) {
+
+    public static Invoice parse(InvoiceDto invoiceDto) {
         if (invoiceDto == null) {
             return null;
         }
@@ -152,11 +145,11 @@ public abstract class Helper {
         invoice.setDateCreate(invoiceDto.getDateCreated());
         invoice.setAmount(invoiceDto.getAmount());
         invoice.setStatus(invoiceDto.getStatus());
-        
 
         return invoice;
     }
-      public static InvoiceDetailDto parse(InvoiceDetail invoiceDetail) {
+
+    public static InvoiceDetailDto parse(InvoiceDetail invoiceDetail) {
         if (invoiceDetail == null) {
             return null;
         }
@@ -166,11 +159,11 @@ public abstract class Helper {
         invoiceDetailDto.setItem(invoiceDetail.getItem());
         invoiceDetailDto.setDescription(invoiceDetail.getDescription());
         invoiceDetailDto.setAmount(invoiceDetail.getAmount());
-        
 
         return invoiceDetailDto;
-}
-        public static InvoiceDetail parse(InvoiceDetailDto invoiceDetailDto) {
+    }
+
+    public static InvoiceDetail parse(InvoiceDetailDto invoiceDetailDto) {
         if (invoiceDetailDto == null) {
             return null;
         }
@@ -180,8 +173,7 @@ public abstract class Helper {
         invoiceDetail.setItem(invoiceDetailDto.getItem());
         invoiceDetail.setDescription(invoiceDetailDto.getDescription());
         invoiceDetail.setAmount(invoiceDetailDto.getAmount());
-        
 
         return invoiceDetail;
-}
+    }
 }

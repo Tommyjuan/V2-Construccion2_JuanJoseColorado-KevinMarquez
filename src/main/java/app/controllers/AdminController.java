@@ -1,23 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.controllers;
 
-import app.controller.validator.PartnerValidator;
-import app.controller.validator.PersonValidator;
-import app.controller.validator.UserValidator;
-import app.controllers.requests.CreateUserRequest;
-import app.dao.interfaces.InvoiceDao;
+import app.controller_validator.PartnerValidator;
+import app.controller_validator.PersonValidator;
+import app.controller_validator.UserValidator;
+import app.controller_requests.CreateUser_Request;
+import app.dao_interfaces.InvoiceDao;
 import app.dto.InvoiceDto;
 import app.dto.PartnerDto;
 import app.dto.PersonDto;
 import app.dto.UserDto;
-import app.model.Invoice;
-import app.service.interfac.AdminService;
-import app.service.interfac.PartnerService;
-import app.service.x.ServiceClub;
-import java.sql.Date;
+import app.service_interfaces.AdminService;
+import app.service_interfaces.PartnerService;
 import java.sql.Timestamp;
 import java.util.List;
 import lombok.Getter;
@@ -26,16 +19,11 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author Camilo
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -55,16 +43,14 @@ public class AdminController implements ControllerInterface {
     private PartnerService services;
     @Autowired
     private InvoiceDao invoiceDao;
+
     @Override
     public void session() throws Exception {
-      
 
     }
 
-  
-
-    @PostMapping("/partner")
-    public ResponseEntity createPartner(@RequestBody CreateUserRequest request) throws Exception {
+    @PostMapping("/createP")
+    public ResponseEntity createPartner(@RequestBody CreateUser_Request request) throws Exception {
 
         try {
             String name = request.getName();
@@ -99,14 +85,15 @@ public class AdminController implements ControllerInterface {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-   @GetMapping("/invoice")
+
+    @GetMapping("/showI")
     public ResponseEntity<List<InvoiceDto>> showInvoiceForAdmin() throws Exception {
-    List<InvoiceDto> invoices = invoiceDao.findAllInvoices();
-    if (invoices.isEmpty()) {
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(invoices);
-    } else {
-        return ResponseEntity.ok(invoices);
-    }
+        List<InvoiceDto> invoices = invoiceDao.findAllInvoices();
+        if (invoices.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(invoices);
+        } else {
+            return ResponseEntity.ok(invoices);
+        }
     }
 
 }
