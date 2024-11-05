@@ -255,25 +255,6 @@ public class ServiceClub implements AdminService, LoginService, PartnerService {
 
     @Override
     public void vipPromocion() throws Exception {
-        /*
-        PartnerDto partnerDto = this.partnerDao.existByPartner(user);
-        checkVipLimit(partnerDto);
-        if ("regular".equals(partnerDto.getType())) {
-
-            int vipCount = partnerDao.countVipPartners();
-            final int vip = 5;
-            partnerDto.setType("vip");
-            if (vipCount >= vip) {
-                throw new Exception("El número máximo de socios VIP ya ha sido alcanzado.");
-            }
-            partnerDto.setType("vip");
-            this.partnerDao.updatePartnerType(partnerDto);
-            System.out.println("Tu solicitud de promoción a VIP ha sido procesada.");
-        } else {
-            System.out.println("Ya eres un socio VIP o no eres un socio regular.");
-
-        }*/
-
     }
 
     @Override
