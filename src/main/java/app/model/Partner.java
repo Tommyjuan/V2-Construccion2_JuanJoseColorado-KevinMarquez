@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package app.model;
 
 import jakarta.persistence.Column;
@@ -13,13 +17,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ *
+ * @author Camilo
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "partner")
 public class Partner {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +40,6 @@ public class Partner {
     private String type;
     @Column(name = "creationdate")
     private Timestamp dateCreated;
+    
 
 }

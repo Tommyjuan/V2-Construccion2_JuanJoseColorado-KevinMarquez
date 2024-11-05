@@ -1,6 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package app.dto;
 
 import java.sql.Timestamp;
+
 
 public class InvoiceDto {
 
@@ -46,6 +51,8 @@ public class InvoiceDto {
         this.dateCreated = dateCreated;
     }
 
+   
+
     public double getAmount() {
         return amount;
     }
@@ -62,4 +69,5 @@ public class InvoiceDto {
         this.Status = Status;
     }
 
+  
 }
